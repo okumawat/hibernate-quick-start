@@ -15,7 +15,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        Application app = new Application(4, "Hibernate", "Hibernate quick start");
+        Application app = new Application(5, "GitHub", "SCM version tool");
         Transaction txn = null;
         
         Session session = HibernateUtil.getSessionFactory().openSession();

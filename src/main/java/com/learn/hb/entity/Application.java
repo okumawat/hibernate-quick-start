@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Table(name="tza_application")
 public class Application {
 	@Id
-	@GeneratedValue
+	//@GeneratedValue
 	
 	@Column(name="id")
 	private int id;
