@@ -27,7 +27,9 @@ public class HibernateUtil {
     public static void shutdown() {
 
         if (registry != null) {
+        	sessionFactory.close();
             StandardServiceRegistryBuilder.destroy(registry);
+            System.out.println("sessionfactory destroyed.");
         }
     }
 }

@@ -44,5 +44,6 @@
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
 
         <mapping class="com.learn.hb.entity.Application" />
+        <mapping class="com.learn.hb.entity.Ticket" />
 	</session-factory>
 </hibernate-configuration>

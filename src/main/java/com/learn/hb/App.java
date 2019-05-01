@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.learn.hb.entity.Application;
+import com.learn.hb.entity.Ticket;
 import com.learn.hb.util.HibernateUtil;
 
 /**
@@ -20,10 +21,32 @@ public class App
     public static void main( String[] args )
     {
     	App mainApp = new App();
-        Application app = new Application(4, "Log4j1", "Logging framework1");
-        mainApp.getApplications();
+    	Ticket ticket = new Ticket(0, "Hibernate1", "Hibernate ORMq1", 3, "Closed");
+       // Application app = new Application(4, "Log4j1", "Logging framework1");
+       mainApp.createTicket(ticket);
+       
         
     }
+    public void createTicket(Ticket ticket) {
+    	Transaction txn = null;
+    	Session session = null;
+        try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			txn = session.beginTransaction();
+			
+			session.save(ticket);
+			txn.commit();
+		} catch (HibernateException e) {
+			if(txn!=null) {
+				txn.rollback();
+			}
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+        
+    }
+    
     public void createApplication(Application app) {
     	Transaction txn = null;
     	Session session = null;
@@ -34,7 +57,9 @@ public class App
 			session.save(app);
 			txn.commit();
 		} catch (HibernateException e) {
-			// TODO Auto-generated catch block
+			if(txn!=null) {
+				txn.rollback();
+			}
 			e.printStackTrace();
 		}finally {
 			session.close();
