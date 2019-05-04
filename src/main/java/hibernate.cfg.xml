@@ -5,15 +5,15 @@
 
         <property name="connection.driver_class">org.postgresql.Driver</property>
 
-        <property name="connection.url">jdbc:postgresql://localhost:5432/javaws</property>
+        <property name="connection.url">jdbc:postgresql://ec2-54-225-116-36.compute-1.amazonaws.com:5432/d88sqe5k21hl1c</property>
 
-        <property name="connection.username">readonlyuser</property>
+        <property name="connection.username">udqzwtdlusrira</property>
 
-        <property name="connection.password">readonlyuser</property>
+        <property name="connection.password">5ba5c8f6cd135e52c13dca495103cc5143ba28f4f8797c54e2c432b4b5161761</property>
 
         <!-- JDBC connection pool settings ... using built-in test pool -->
 
-        <property name="connection.pool_size">1</property>
+        <property name="connection.pool_size">100</property>
 
         <!-- Select our SQL dialect -->
 
