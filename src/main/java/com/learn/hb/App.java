@@ -21,9 +21,9 @@ public class App
     public static void main( String[] args )
     {
     	App mainApp = new App();
-    	Ticket ticket = new Ticket(0, "Hibernate1", "Hibernate ORMq1", 3, "Closed");
+    	//Ticket ticket = new Ticket(0, "Hibernate1", "Hibernate ORMq1", 3, "Closed");
        // Application app = new Application(4, "Log4j1", "Logging framework1");
-       mainApp.createTicket(ticket);
+       mainApp.getApplications();
        
         
     }
@@ -97,7 +97,7 @@ public class App
 			Iterator itr = apps.iterator();
 			while(itr.hasNext()) {
 				Application app = (Application)itr.next();
-				System.out.println(app.toString());
+				System.out.println(app.getTickets());
 			}
 		} catch (HibernateException e) {
 			// TODO Auto-generated catch block

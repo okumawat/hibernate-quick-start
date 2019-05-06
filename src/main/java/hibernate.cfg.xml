@@ -3,21 +3,21 @@
 	<session-factory>
 		        <!-- JDBC Database connection settings -->
 
-        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 
-        <property name="connection.url">jdbc:postgresql://localhost:5432/javaws</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/javaws</property>
 
-        <property name="connection.username">readonlyuser</property>
+        <property name="connection.username">readonly</property>
 
-        <property name="connection.password">readonlyuser</property>
+        <property name="connection.password">readonly</property>
 
         <!-- JDBC connection pool settings ... using built-in test pool -->
 
-        <property name="connection.pool_size">1</property>
+        <property name="connection.pool_size">100</property>
 
         <!-- Select our SQL dialect -->
 
-        <property name="dialect">org.hibernate.dialect.PostgreSQL92Dialect</property>
+        <property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
 
         <!-- Echo the SQL to stdout -->
 

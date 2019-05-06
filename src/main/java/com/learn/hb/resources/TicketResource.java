@@ -1,6 +1,7 @@
 package com.learn.hb.resources;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -35,10 +36,10 @@ public class TicketResource {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println(e.getMessage());
-			return Response.status(500).build();
 		}finally {
 			if(session!=null) {
 				session.close();
+				System.out.println("Session closed.");
 			}
 		}
 		return Response.status(200).entity(ticket).build();
@@ -55,22 +56,47 @@ public class TicketResource {
 			txn = session.beginTransaction();
 			session.save(ticket);
 			txn.commit();
-			
 		} catch (HibernateException e) {
 			// TODO Auto-generated catch block
 			if(txn!=null) {
 				txn.rollback();
 			}
 			System.out.println(e.getMessage());
-			throw new WebApplicationException(Response.status(400).entity(e.getMessage()).build());
 		}finally {
 			if(session!=null) {
 				session.close();
+				System.out.println("session closed.");
 			}
 		}
 		return Response.status(201).entity(ticket).build();
 	}
 	
+	@DELETE
+	@Path("/{ticketId}")
+	public Response deleteTicket(@PathParam("ticketId") int id) {
+		
+		Session session = null;
+		Transaction txn = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			txn = session.beginTransaction();
+			Ticket ticket = session.get(Ticket.class, id);
+			session.delete(ticket);
+			txn.commit();
+		} catch (HibernateException e) {
+			if(txn!=null) {
+				txn.rollback();
+			}
+			System.out.println(e.getMessage());
+		}finally {
+			if(session!=null) {
+				session.close();
+				System.out.println("session closed.");
+			}
+		}
+		return Response.status(204).build();
+		
+	}
 	
 	
 }

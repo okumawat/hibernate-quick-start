@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -14,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Ticket {
 	
 	@Id
-	@GeneratedValue
+	//@GeneratedValue
 	@Column(name="id")
 	private int id;
 	
@@ -27,6 +29,18 @@ public class Ticket {
 	@Column(name="status")
 	private String status;
 	
+	@ManyToOne
+	@JoinColumn(referencedColumnName="id")
+	private Application application;
+	
+	public Application getApplication() {
+		return application;
+	}
+
+	public void setApplication(Application application) {
+		this.application = application;
+	}
+
 	public Ticket() {
 		
 	}
@@ -70,5 +84,9 @@ public class Ticket {
 		this.status = status;
 	}
 	
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return title+","+status+","+applicationId;
+	}
 }

@@ -1,9 +1,15 @@
 package com.learn.hb.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -12,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Application {
 	@Id
-	@GeneratedValue
+	//@GeneratedValue
 	
 	@Column(name="id")
 	private int id;
@@ -21,6 +27,17 @@ public class Application {
 	@Column(name="description")
 	private String description;
 	
+	@OneToMany(mappedBy="applicationId")
+	private Set<Ticket> tickets;
+	
+	public Set<Ticket> getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(Set<Ticket> tickets) {
+		this.tickets = tickets;
+	}
+
 	public Application(int id, String name, String description) {
 		super();
 		this.id = id;
